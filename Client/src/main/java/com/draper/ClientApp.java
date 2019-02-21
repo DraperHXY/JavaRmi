@@ -1,21 +1,18 @@
 package com.draper;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 public class ClientApp {
 
-    public static void main(String[] args) throws InterruptedException {
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:*spring.xml");
-        System.out.println("Load ApplicationContext complete");
-        HelloService helloService = (HelloService) context.getBean("rmiProxyFactory");
-        System.out.println(helloService.getMsg());
+    public static void main(String[] args) throws InterruptedException, RemoteException, NotBoundException, MalformedURLException {
 
-        Object o = new Object();
-        synchronized (o){
-            o.wait();
-        }
 
+        HelloService helloService = (HelloService) Naming.lookup("rmi://127.0.0.1:8888/hello");
+        System.out.println(helloService.getMsg("Hello"));
     }
 
 }

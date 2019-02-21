@@ -11,6 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="JavaRmi" target="1.7" />
       <module name="Service" target="1.7" />
       <module name="Web" target="1.7" />
     </bytecodeTargetLevel>
